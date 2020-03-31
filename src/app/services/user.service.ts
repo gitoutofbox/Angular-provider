@@ -14,4 +14,7 @@ export class UserService {
   setUserAge(age: number):void {
     this.age = age;
   }
+  getClass() {
+    return this.getUserAge() == 10 ? 'Class X' : 'Class X+';
+  }
 }

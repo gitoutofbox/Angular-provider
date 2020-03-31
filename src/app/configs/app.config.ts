@@ -1,5 +1,14 @@
 
 export const APP_CONFIG = Object({ 
-    serviceURL: "www.serviceUrl.com\api", 
-    IsDevleomentMode: true 
+    apiEndpoint: "http://actual/api/path", 
+    isMockApi: false 
 }); 
+
+// export class APP_CONFIG {
+//     apiEndpoint: string;
+//     isDevMode: boolean;
+//     constructor(apiEndpoint: string, isDevMode: boolean) {
+//         this.apiEndpoint = apiEndpoint;
+//         this.isDevMode = isDevMode;
+//     }
+// }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductListComponent } from './modules/products/components/product-list/product-list.component';
+import { DirectiveTestComponent } from './components/directive-test/directive-test.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule)
+  },
+  {
+    path: 'directive-test',
+    component: DirectiveTestComponent
   },
   {
     path: 'products',
