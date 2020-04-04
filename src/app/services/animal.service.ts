@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable, InjectionToken } from '@angular/core';
+export const CONNECTION_TYPE = new InjectionToken<string>('ConnectionType');
 @Injectable({
   providedIn: 'root'
 })

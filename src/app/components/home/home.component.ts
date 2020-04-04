@@ -3,6 +3,8 @@ import { UserService } from 'src/app/services/user.service';
 import { APP_CONFIG } from 'src/app/configs/app.config';
 import { Students, studentClassFactory } from 'src/app/services/student-subjects';
 
+import { AnimalService } from 'src/app/services/animal.service';
+
 // export const Prefered_Courses = new InjectionToken<string>('course name');
 
 @Component({
@@ -16,9 +18,11 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     @Inject(APP_CONFIG) private localAppConfig,
     // @Inject(UserService) r
-    @Inject(Students) private studentClassFactory: string
+    @Inject(Students) private studentClassFactory: string,
+    private animalService: AnimalService
     ) { 
-      console.log('In home constructor', studentClassFactory)
+      // console.log('In home constructor', studentClassFactory)
+      console.log('animalService', this.animalService)
     }
 
   ngOnInit(): void { 

@@ -1,2 +1,7 @@
 <p>contact works!</p>
 <p>Contact Age is {{age}}</p>
+
+<div class="connectionTip" *ngIf="isConnectionSlow" [@slowConnectionMessage]>
+    You have slow internet connection <a href="#">switch to lite mode</a>
+    <span (click)="isConnectionSlow = false;">x</span>
+</div>

@@ -1,0 +1,20 @@
+
+<form #f="ngForm">
+    <div class="form-group">
+      <label for="name">Email</label>
+      <input type="text" class="form-control" [(ngModel)]="myEmail" name="firstNsme" id="myEmail" required customEmailValidator #email="ngModel">
+
+      <div *ngIf="email.invalid && email.errors.required" class="alert alert-danger">
+          Email is required
+        </div>
+
+        <div *ngIf="email.invalid && email.errors.custom" class="alert alert-danger">
+            Email must be at domain: @codestudio.com
+          </div>
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>

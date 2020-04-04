@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,21 +17,15 @@ const DI_CONFIG = {
   apiEndpoint: 'http:/fake/api',
   isMockApi: true
 };
-
-// export const DI_CONFIG = new APP_CONFIG('http:/localhost:7000/api', true);
-
 import { Students, studentClassFactory } from './services/student-subjects';
 import { DirectiveTestComponent } from './components/directive-test/directive-test.component';
 import { BoxWidgetDirective } from './directives/attribute/box-widget.directive';
-// export const Prefered_Courses = new InjectionToken<string>('course name');
 
-// export function preferredCoursesFactory(count: number) {
-//   return (): string => {
-//     return count + 'Hi'
-//   };
-// };
-
-
+import { AnimalService, CONNECTION_TYPE } from './services/animal.service';
+import { MonkeyService } from './services/monkey.service';
+import { FormsModule } from '@angular/forms';
+import { CustomEmailValidatorDirective } from './directives/validators/custom-email-validator.directive';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -38,19 +34,39 @@ import { BoxWidgetDirective } from './directives/attribute/box-widget.directive'
     ContactComponent,
     ProductListComponent,
     DirectiveTestComponent,
-    BoxWidgetDirective
+    BoxWidgetDirective,
+    CustomEmailValidatorDirective,
+    RegisterComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [
-    {provide: UserService, useClass: UserService},
-    {provide:APP_CONFIG, useValue: DI_CONFIG},
-    // { provide: UserService, useFactory: randomFactory },
-    { provide: Students, useFactory: studentClassFactory(20),deps: [UserService] }
+    { provide: UserService, useClass: UserService },
+    { provide: APP_CONFIG, useValue: DI_CONFIG },
+
+    { provide: Students, useFactory: studentClassFactory(20), deps: [UserService] },
+
+
+    //Multi
+    { provide: AnimalService, useClass: AnimalService, multi: true },
+    { provide: AnimalService, useClass: MonkeyService, multi: true },
+
+    //useFactory
+    {
+      provide: CONNECTION_TYPE,
+      useFactory: () => {
+        const userConnection = navigator['connection'];      
+        return userConnection['effectiveType'] 
+      }
+    }
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

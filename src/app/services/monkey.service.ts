@@ -10,6 +10,9 @@ export class MonkeyService extends AnimalService{
   
   constructor() { super()}
   
+  getFood() {
+    return this.eats;
+  }
 
  
 }
